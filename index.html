@@ -1,14 +1,139 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Website1</title>
+    <title>GitHub Website</title>
 </head>
+
 <body>
-    <h1>hello</h1>
-    <P>Welcome to website1</P>
-    <img src="tiger.jpg" alt="tiger" width="200px">
+    <h1 class="greet" style="text-align: center; color: rgb(238, 161, 18); "></h1>
+    <P style="text-align: center; color: rgb(104, 102, 102);">Welcome to My Website </P>
+    <div id="image" style="padding:0">
+        <img src="tiger.jpg" alt="tiger" width="50%" style="margin-left:25%;">
+    </div>
+    <h2 style="text-align: center; color: rgb(121, 110, 89); ">
+        Let's Calculate!
+    </h2>
+    <div class="calculator" style="text-align: center;">
+        <input id="first" type="number" name="first" placeholder="x" /><br /><br />
+        <select id="option">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+            <option value="%">%</option>
+        </select><br /><br />
+        <input id="second" type="number" name="second" placeholder="y " /><br /><br />
+        <button onclick="calulate()">=</button>
+        <br /><br />
+        <input id="result" type="number" name="result" placeholder="result" readonly /><br /><br />
+    </div>
+    <div class="prime" style="text-align: center">
+        <h2 style="text-align: center; color: rgb(121, 110, 89); ">
+            Let's Find Primes Upto a Number
+        </h2>
+        <input id="prime" type="number" name="prime" placeholder="x" />
+        <button onclick="primes()">Find</button>
+    </div>
+    <p class="para"></p>
+    <code>&copy; 2022 Naveen Bhati</code>
 </body>
+<script>
+    function primes() {
+        var x = 10;
+        var prime_input = parseInt(document.getElementById("prime").value)
+        var prime = " ";
+        var prime_count = 0;
+        if (prime_input in [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) {
+            switch (prime_input) {
+                case 0:
+                    prime = "0";
+                    prime_count = 0;
+                    break;
+                case 1:
+                    prime = "0";
+                    prime_count = 0;
+                    break;
+                case 2:
+                    prime = "2";
+                    prime_count = 1;
+                    break;
+                case 3:
+                    prime = "2 3";
+                    prime_count = 2;
+                    break;
+                case 4:
+                    prime = "2 3";
+                    prime_count = 2;
+                    break;
+                case 5:
+                    prime = "2 3 5";
+                    prime_count = 3;
+                    break;
+                case 6:
+                    prime = "2 3 5";
+                    prime_count = 3;
+                    break;
+                case 7:
+                    prime = "2 3 5 7";
+                    prime_count = 4;
+                    break;
+                case 8:
+                    prime = "2 3 5 7";
+                    prime_count = 4;
+                    break;
+                case 9:
+                    prime = "2 3 5 7";
+                    prime_count = 4;
+                    break;
+                case 10:
+                    prime = "2 3 5 7";
+                    prime_count = 4;
+                    break;
+                default:
+                    break;
+            }
+        }
+        else {
+            prime_count = 4;
+            while (x <= prime_input) {
+                if (x % 2 != 0 && x % 3 != 0 && x % 5 != 0 && x % 7 != 0) {
+                    prime += x + " ";
+                    x++;
+                    prime_count++;
+                    continue;
+                }
+                x++;
+            }
+            document.getElementsByClassName("para")[0].innerHTML = "<h3>" + "Total Primes:- " + prime_count + "</h2>" + "2 3 5 7" + prime;
+            return;
+        }
+        document.getElementsByClassName("para")[0].innerHTML = "<h3>" + "Total Primes:- " + prime_count + "</h3>" + prime
+    }
+
+    function calulate() {
+        var first = document.getElementById("first").value;
+        var second = document.getElementById("second").value;
+        var oprator = document.getElementById("option").value;
+
+        if (oprator == "+") { var result = parseInt(first) + parseInt(second); }
+        else if (oprator == "-") { var result = parseInt(first) - parseInt(second); }
+        else if (oprator == "*") { var result = parseInt(first) * parseInt(second); }
+        else if (oprator == "/") { var result = parseInt(first) / parseInt(second); }
+        else if (oprator == "%") { var result = parseInt(first) % parseInt(second); }
+        document.getElementById("result").value = result;
+    }
+
+    function greet() {
+        var prompt_value = prompt("Your Name Please", "");
+        var greet_tag = "<i><b>" + prompt_value + "</i></b>";
+        var greet = "Namaste " + greet_tag;
+        document.getElementsByClassName("greet")[0].innerHTML = greet;
+    }
+    greet();
+</script>
+
 </html>
