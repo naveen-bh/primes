@@ -35,26 +35,30 @@
         <h2 style="text-align: center; color: rgb(121, 110, 89); ">
             Let's Find Primes Upto a Number
         </h2>
-        <input id="prime" type="number" name="prime" placeholder="x" />
+        <input id="prime" type="number" name="prime" placeholder="x" onkeypress="call_primes(event)" />
         <button onclick="primes()">Find</button>
     </div>
     <p class="para"></p>
     <code>&copy; 2022 Naveen Bhati</code>
 </body>
 <script>
+    function call_primes(event) {
+        if (event.key == "Enter") { primes(); }
+    }
+
     function primes() {
         var x = 10;
         var prime_input = parseInt(document.getElementById("prime").value)
         var prime = " ";
         var prime_count = 0;
-        if (prime_input in [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) {
+        if (prime_input <= 10) {
             switch (prime_input) {
                 case 0:
-                    prime = "0";
+                    prime = "";
                     prime_count = 0;
                     break;
                 case 1:
-                    prime = "0";
+                    prime = "";
                     prime_count = 0;
                     break;
                 case 2:
@@ -94,10 +98,12 @@
                     prime_count = 4;
                     break;
                 default:
+                    prime = "";
+                    prime_count = 0;
                     break;
             }
         }
-        else {
+        else if (prime_input > 10) {
             prime_count = 4;
             while (x <= prime_input) {
                 if (x % 2 != 0 && x % 3 != 0 && x % 5 != 0 && x % 7 != 0) {
@@ -111,6 +117,11 @@
             document.getElementsByClassName("para")[0].innerHTML = "<h3>" + "Total Primes:- " + prime_count + "</h2>" + "2 3 5 7" + prime;
             return;
         }
+        else if (prime_input != Number) {
+            document.getElementsByClassName("para")[0].innerHTML = "<h4 style='color:red;'>***Please enter a valid Number***</h4>"
+            return;
+        }
+
         document.getElementsByClassName("para")[0].innerHTML = "<h3>" + "Total Primes:- " + prime_count + "</h3>" + prime
     }
 
@@ -119,18 +130,21 @@
         var second = document.getElementById("second").value;
         var oprator = document.getElementById("option").value;
 
-        if (oprator == "+") { var result = parseInt(first) + parseInt(second); }
-        else if (oprator == "-") { var result = parseInt(first) - parseInt(second); }
-        else if (oprator == "*") { var result = parseInt(first) * parseInt(second); }
-        else if (oprator == "/") { var result = parseInt(first) / parseInt(second); }
-        else if (oprator == "%") { var result = parseInt(first) % parseInt(second); }
+        if (oprator == "+") { var result = parseFloat(first) + parseFloat(second); }
+        else if (oprator == "-") { var result = parseFloat(first) - parseFloat(second); }
+        else if (oprator == "*") { var result = parseFloat(first) * parseFloat(second); }
+        else if (oprator == "/") { var result = parseFloat(first) / parseFloat(second); }
+        else if (oprator == "%") { var result = parseFloat(first) % parseFloat(second); }
         document.getElementById("result").value = result;
     }
 
     function greet() {
         var prompt_value = prompt("Your Name Please", "");
+        if (prompt_value == null) {
+            prompt_value = "";
+        }
         var greet_tag = "<i><b>" + prompt_value + "</i></b>";
-        var greet = "Namaste " + greet_tag;
+        var greet = "<span onclick='greet()' style='cursor:pointer;'>" + "Namaste " + greet_tag + "</span>";
         document.getElementsByClassName("greet")[0].innerHTML = greet;
     }
     greet();
