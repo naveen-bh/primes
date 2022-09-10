@@ -141,9 +141,12 @@
     function greet() {
         var prompt_value = prompt("Your Name Please", "");
         if (prompt_value == null) {
-            prompt_value = "";
+            if (document.getElementsByClassName("greet_name")[0] == undefined) {
+                prompt_value = "";
+            }
+            else { return; }
         }
-        var greet_tag = "<i><b>" + prompt_value + "</i></b>";
+        var greet_tag = "<span class='greet_name'><i><b>" + prompt_value + "</i></b></span>";
         var greet = "<span onclick='greet()' style='cursor:pointer;'>" + "Namaste " + greet_tag + "</span>";
         document.getElementsByClassName("greet")[0].innerHTML = greet;
     }
