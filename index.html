@@ -102,6 +102,7 @@
                     prime_count = 0;
                     break;
             }
+            document.getElementsByClassName("para")[0].innerHTML = "<h3>" + "Total Primes:- " + prime_count + "</h3>" + prime
         }
         else if (prime_input > 10) {
             prime_count = 4;
@@ -115,14 +116,10 @@
                 x++;
             }
             document.getElementsByClassName("para")[0].innerHTML = "<h3>" + "Total Primes:- " + prime_count + "</h2>" + "2 3 5 7" + prime;
-            return;
         }
         else if (prime_input != Number) {
             document.getElementsByClassName("para")[0].innerHTML = "<h4 style='color:red;'>***Please enter a valid Number***</h4>"
-            return;
         }
-
-        document.getElementsByClassName("para")[0].innerHTML = "<h3>" + "Total Primes:- " + prime_count + "</h3>" + prime
     }
 
     function calulate() {
