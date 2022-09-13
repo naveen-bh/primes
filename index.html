@@ -9,43 +9,46 @@
     <link rel="shortcut icon" href="images/icon.png" type="image/x-icon">
 </head>
 
-<body onload="footer(), image_change()">
+<body onload="footer(), image_change(), bg_color()">
+    <img src="images/icon.png" alt="bg-color" onclick="bg_color()" title="click to change background"
+        style="cursor: pointer; position: fixed;top: 25px;left: 25px;">
+
     <h1 class="greet" style="text-align: center; color: rgb(238, 161, 18); "></h1>
     <P style="text-align: center; color: rgb(104, 102, 102);">Welcome to My Website </P>
     <div style="text-align: center;">
-        <img src="#" alt="no image" id="image" onclick="image_change()"
+        <img src="#" alt="no image" id="image" onclick="image_change()" title="click to change image"
             style="height: 200px; border-radius: 20%; cursor: pointer;">
     </div>
     <h2 style="text-align: center; color: rgb(121, 110, 89); ">
         Let's Calculate!
     </h2>
     <div class="calculator" style="text-align: center;">
-        <input id="first" type="number" name="first" placeholder="x" /><br /><br />
-        <select id="option">
+        <input id="first" type="number" name="first" placeholder="x" title="enter first value" /><br /><br />
+        <select id="option" title="choose oprator">
             <option value="+">+</option>
             <option value="-">-</option>
             <option value="*">*</option>
             <option value="/">/</option>
             <option value="%">%</option>
         </select><br /><br />
-        <input id="second" type="number" name="second" placeholder="y " /><br /><br />
-        <button onclick="calulate()">=</button>
+        <input id="second" type="number" name="second" placeholder="y" title="enter second value" /><br /><br />
+        <button onclick="calulate()" title="click to find result">=</button>
         <br /><br />
-        <input id="result" type="number" name="result" placeholder="result" readonly /><br /><br />
+        <input id="result" type="number" name="result" placeholder="result" readonly title="result, readonly!" /><br /><br />
     </div>
     <div class="prime" style="text-align: center">
         <h2 style="text-align: center; color: rgb(121, 110, 89); ">
             Let's Find Primes Upto a Number
         </h2>
-        <input id="prime" type="number" name="prime" placeholder="x" onkeypress="call_primes(event)" />
-        <button onclick="primes()">Find</button>
+        <input id="prime" type="number" name="prime" placeholder="x" onkeypress="call_primes(event)" title="input a number then press enter" />
+        <button onclick="primes()" title="click to find primes">Find</button>
     </div>
     <div id="prime_container" style="margin:20px 0px 50px 0px;">
         <div id="prime_header">
         </div>
         <p id="prime_numbers" style="max-height:400px; overflow:auto"></p>
     </div>
-    <footer style="position:fixed;left:0px;bottom:0px;width:100%;padding:2px 10px;background-color:darkgray;">
+    <footer style="position:fixed;left:0px;bottom:0px;width:100%;padding:2px 10px;background-color:#bdbdbd;">
         <code><today></today><copyright style="float:right;margin-right:20px;">&copy; <year>2022</year> Naveen Bhati</copyright></code>
     </footer>
 </body>
@@ -53,11 +56,6 @@
     var prime_num_storage = [2, 3, 5, 7];
     var highest_prime_input_storage = 10;
     var privious_prime_input_storage;
-
-    function call_primes(event) {
-        if (event.key == "Enter") { primes(); }
-    }
-
     function primes() {
         var find_prime_from;
         var prime_num_count = 4;
@@ -185,6 +183,10 @@
         }
     }
 
+    function call_primes(event) {
+        if (event.key == "Enter") { primes(); }
+    }
+
     function calulate() {
         var first = document.getElementById("first").value;
         var second = document.getElementById("second").value;
@@ -218,6 +220,16 @@
         if (current_image == total_images) { current_image = 0; }
     }
 
+    var color_list = ["#e6e6fa", "#f0f8ff", "#b0e0e6", "#afeeee", "#98fb98", "#eee8aa", "#ffe4e1", "#ffe4b5", "#f5fffa", "#48d1cc", "#ffffe0", "#b0c4de", "#ffb6c1", "#d3d3d3", "#90ee90", "#fafad2", "#e0ffff", "#add8e6", "#fffacd", "#fff0f5", "#f0e68c", "#f0fff0", "#adff2f", "#ffd700", "#f8f8ff"];
+    var current_bg_color_value = 0;
+    function bg_color() {
+        var color_value = color_list[current_bg_color_value]
+        var attr_value = "background-color:" + color_value + ";"
+        document.getElementsByTagName("body")[0].setAttribute("style", attr_value);
+        current_bg_color_value++
+        if (current_bg_color_value == color_list.length) { current_bg_color_value = 0; }
+    }
+
     function greet() {
         var prompt_value = prompt("Your Name Please", "");
         if (prompt_value == null) {
@@ -227,7 +239,7 @@
             else { return; }
         }
         var greet_tag = "<span class='greet_name'><i><b>" + prompt_value + "</i></b></span>";
-        var greet = "<span onclick='greet()' style='cursor:pointer;'>" + "Namaste " + greet_tag + "</span>";
+        var greet = "<span onclick='greet()' title='click to rename' style='cursor:pointer;'>" + "Namaste " + greet_tag + "</span>";
         document.getElementsByClassName("greet")[0].innerHTML = greet;
     }
     greet();
