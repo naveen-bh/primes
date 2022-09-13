@@ -9,15 +9,15 @@
     <link rel="shortcut icon" href="images/icon.png" type="image/x-icon">
 </head>
 
-<body onload="footer(), image_change(), bg_color()">
-    <img src="images/icon.png" alt="bg-color" onclick="bg_color()" title="click to change background"
-        style="cursor: pointer; position: fixed;top: 25px;left: 25px;">
+<body onload="footer(), image_change(), bg_color(), cursor()">
+    <img src="images/icon.png" alt="bg-color" id="pop-image" onclick="bg_color()" title="click to change background"
+        style="cursor:default; position: fixed;top: 25px;left: 25px;">
 
     <h1 class="greet" style="text-align: center; color: rgb(238, 161, 18); "></h1>
     <P style="text-align: center; color: rgb(104, 102, 102);">Welcome to My Website </P>
     <div style="text-align: center;">
         <img src="#" alt="no image" id="image" onclick="image_change()" title="click to change image"
-            style="height: 200px; border-radius: 20%; cursor: pointer;">
+            style="height: 200px; border-radius: 20%; cursor: default;">
     </div>
     <h2 style="text-align: center; color: rgb(121, 110, 89); ">
         Let's Calculate!
@@ -230,6 +230,15 @@
         if (current_bg_color_value == color_list.length) { current_bg_color_value = 0; }
     }
 
+    function cursor(){
+        var screen_size = window.screen.width;
+        if (screen_size > 900){
+            document.getElementById("pop-image").style.cursor = "pointer";
+            document.getElementById("image").style.cursor = "pointer";
+            document.getElementById("greet").style.cursor = "pointer";
+        }
+    }
+
     function greet() {
         var prompt_value = prompt("Your Name Please", "");
         if (prompt_value == null) {
@@ -239,7 +248,7 @@
             else { return; }
         }
         var greet_tag = "<span class='greet_name'><i><b>" + prompt_value + "</i></b></span>";
-        var greet = "<span onclick='greet()' title='click to rename' style='cursor:pointer;'>" + "Namaste " + greet_tag + "</span>";
+        var greet = "<span onclick='greet()' id='greet' title='click to rename' style='cursor:default;'>" + "Namaste " + greet_tag + "</span>";
         document.getElementsByClassName("greet")[0].innerHTML = greet;
     }
     greet();
