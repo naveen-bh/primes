@@ -8,11 +8,12 @@
     <title>GitHub Website</title>
 </head>
 
-<body onload="footer()">
+<body onload="footer(), image_change()">
     <h1 class="greet" style="text-align: center; color: rgb(238, 161, 18); "></h1>
     <P style="text-align: center; color: rgb(104, 102, 102);">Welcome to My Website </P>
-    <div id="image" style="padding:0">
-        <img src="tiger.jpg" alt="tiger" width="50%" style="margin-left:25%;">
+    <div style="text-align: center;">
+        <img src="#" alt="no image" id="image" onclick="image_change()"
+            style="height: 200px; border-radius: 20%; cursor: pointer;">
     </div>
     <h2 style="text-align: center; color: rgb(121, 110, 89); ">
         Let's Calculate!
@@ -51,6 +52,7 @@
     var prime_num_storage = [2, 3, 5, 7];
     var highest_prime_input_storage = 10;
     var privious_prime_input_storage;
+
     function call_primes(event) {
         if (event.key == "Enter") { primes(); }
     }
@@ -119,7 +121,7 @@
                 "<h3 id='total_primes'>" + "Total Primes:- " + prime_num_count + "</h3>";
             document.getElementById("prime_numbers").innerHTML = prime;
         }
-        
+
         else if (prime_input > 10) {
             if (prime_input == highest_prime_input_storage && prime_input == privious_prime_input_storage) { return; }
             if (prime_input <= highest_prime_input_storage) {
@@ -205,7 +207,16 @@
         document.getElementsByTagName("today")[0].innerHTML =
             today + " " + months_name[month];
     }
- 
+
+    var total_images = 12;
+    var current_image = 0;
+    function image_change() {
+        current_image++;
+        var image_name = "images/" + current_image + ".jpg"
+        document.getElementById("image").setAttribute("src", image_name);
+        if (current_image == total_images) { current_image = 0; }
+    }
+
     function greet() {
         var prompt_value = prompt("Your Name Please", "");
         if (prompt_value == null) {
