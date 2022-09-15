@@ -184,14 +184,14 @@ function cursor() {
 }
 
 function greet() {
-    var prompt_value = prompt("Your Name Please (max 10 character)", "").trim();
+    var prompt_value = prompt("Your Name Please (max 10 character)", "");
     if (prompt_value == null) {
         if (document.getElementsByClassName("greet_name")[0] == undefined) {
             prompt_value = "";
         }
         else { return; }
     }
-    var greet_tag = "<span class='greet_name'><i><b>" + prompt_value.slice(0, 10) + "</i></b></span>";
+    var greet_tag = "<span class='greet_name'><i><b>" + prompt_value.trim().slice(0, 10) + "</i></b></span>";
     var greet = "<span onclick='greet()' id='greet' title='click to rename' style='cursor:default;'>" + "Namaste " + greet_tag + "</span>";
     document.getElementsByClassName("greet")[0].innerHTML = greet;
 }
